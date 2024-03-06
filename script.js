@@ -35,8 +35,9 @@ taskForm.addEventListener("submit", (e) => {
     id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
     title: titleInput.value,
     date: dateInput.value,
-    description: descriptionInput.value
+    description: descriptionInput.value,
   };
-  
-  
+  if (dataArrIndex === -1) {
+    taskData.unshift(taskObj);
+  }
 });
