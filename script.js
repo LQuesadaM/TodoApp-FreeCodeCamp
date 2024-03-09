@@ -82,6 +82,11 @@ const reset = () => {
   currentTask = {};
 };
 
+// reflect data from localStorage in the UI when the page loads
+if (taskData.length) {
+  updateTaskContainer();
+}
+
 openTaskFormBtn.addEventListener("click", () => {
   taskForm.classList.toggle("hidden");
 });
