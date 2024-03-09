@@ -10,7 +10,7 @@ const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
-const taskData = [];
+const taskData = JSON.parse(localStorage.getItem("data")) || [];
 let currentTask = {};
 
 const addOrUpdateTask = () => {
@@ -27,6 +27,9 @@ const addOrUpdateTask = () => {
   } else {
     taskData[dataArrIndex] = taskObj;
   }
+  //localStore setItem
+  localStorage.setItem("data", JSON.stringify(taskData));
+
   updateTaskContainer();
   reset();
 };
@@ -52,6 +55,9 @@ const deleteTask = (buttonEl) => {
   );
   buttonEl.parentElement.remove();
   taskData.splice(dataArrIndex, 1);
+
+  //Don't need the removeItem() or clear() methods. Since you already use splice() to remove the deleted task from taskData, all you need to do now is save taskData to local storage again.
+  localStorage.setItem("data", JSON.stringify(taskData));
 };
 
 const editTask = (buttonEl) => {
